@@ -1,23 +1,12 @@
-import random
+# Найти сумму n элементов следующего ряда чисел: 1 -0.5 0.25 -0.125 ...
+# Количество элементов (n) вводится с клавиатуры.
 
-print('1. int')
-print('2. float')
-print('3. символ от a до z')
-render_req = input('Выбирите формат данных (1-3): ')
+a = int(input('Введите целое число: '))
+chislo = 1
+summa = 0
 
-if render_req == '1':
-    m1 = input('Введите диапозон в формате (x;y): ')
-    x1, x2 = map(int, m1.split(';'))
-    z = random.randint(x1, x2)
-    print(f'Результат генерации случайного целого числа = {z}')
-elif render_req == '2':
-    m1 = input('Введите диапозон в формате (x;y): ')
-    x1, x2 = map(float, m1.split(';'))
-    z = random.uniform(x1, x2)
-    print(f'Результат генерации случайного вещественного числа = {z}')
-elif render_req == '3':
-    allLetters = 'abcdefghijklmnopqrstuvwxyz'
-    z = random.choice(allLetters)
-    print(f'Результат генерации случайного символа от a до z = {z}')
-else:
-    print('Введено не верное значение.')
+for i in range(a):
+    summa += chislo
+    chislo /= 2
+
+print(summa)
