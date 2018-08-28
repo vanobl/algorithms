@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
-print('M\u2081')
-print('M\u2082')
+a = 33
+print(f'{33//10}')
+print(f'{33%10}')
