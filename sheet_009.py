@@ -28,6 +28,6 @@ for i in chisla:
         max_chisla.update({i: max_summ})
 
     #print(f'Сумма цифр числа {i} = {summ}')
-print(max_chisla)
+#print(max_chisla)
 for i, y in max_chisla.items():
     print(f'Сумма цифр числа {i} = {y}')
