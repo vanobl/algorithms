@@ -1,23 +1,27 @@
-#Вывести на экран коды и символы таблицы ASCII, начиная с символа под номером 
-# 32 и заканчивая 127-м включительно. Вывод выполнить в табличной форме: 
-# по десять пар «код-символ» в каждой строке.
+#В массиве найти максимальный отрицательный элемент. Вывести на экран 
+# его значение и позицию в массиве.
 
-spisok = ''
-chislo = 0
+import random
 
-for i in range(78, 128):
-    if chislo < 9:
-        if i < 100:
-            spisok += f' {i}: {chr(i)} '
-            chislo += 1
-        else:
-            spisok += f'{i}: {chr(i)} '
-            chislo += 1
+#определим пустой список
+chisla_list = []
+
+max_chislo = {}
+
+#заполним список случайными числами
+for i in range(10):
+    a = random.randint(-100, 100)
+    chisla_list.append(a)
+print(chisla_list)
+
+#узнаём максимальное число
+for i, x in enumerate(chisla_list):
+    if not any(max_chislo):
+        if x < 0:
+            max_chislo.update({i: x})
     else:
-        if i < 100:
-            spisok += f' {i}: {chr(i)}\n'
-            chislo = 0
-        else:
-            spisok += f'{i}: {chr(i)}\n'
-            chislo = 0
-print(spisok)
+        if int(list(max_chislo.values())[0]) < x and x < 0:
+            max_chislo.clear()
+            max_chislo.update({i: x})
+
+print(f'Максимальное отрицательное число {list(max_chislo.values())[0]}')
