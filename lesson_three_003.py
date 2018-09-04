@@ -1,5 +1,11 @@
 #В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
 import random
+import cProfile
+import io
+import pstats
+
+pr = cProfile.Profile()
+pr.enable()
 
 #определим пустой список
 chisla_list = []
@@ -65,3 +71,12 @@ else:
     chisla_list.insert(int(list(max_chislo.keys())[0]), list(min_chislo.values())[0])
 
 print(chisla_list)
+
+pr.disable()
+
+strio = io.StringIO()
+ps = pstats.Stats(pr, stream=strio).sort_stats('tottime')
+ps.print_stats()
+
+with open('test.txt', 'w+') as f:
+    f.write(strio.getvalue())
