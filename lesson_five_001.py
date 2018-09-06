@@ -34,6 +34,7 @@ for i in profit_companis:
 # подсчитаем среднее значение и запомним его
 average_value = round((full_summ / (quantity_company * 4)), 2)
 
+
 for i in range(quantity_company):
     if average_value_companys[i] > average_value:
         print(f'Компания {name_company[i]} получила среднюю прибыль {average_value_companys[i]} больше среднего значения {average_value}')
