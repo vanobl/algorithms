@@ -1,82 +1,41 @@
-#В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
-import random
-import cProfile
-import io
-import pstats
+# Пользователь вводит данные о количестве предприятий, их наименования и прибыль 
+# за 4 квартала для каждого предприятия. Программа должна определить среднюю 
+# прибыль (за год для всех предприятий) и вывести наименования предприятий, 
+# чья прибыль выше среднего и отдельно вывести наименования предприятий, 
+# чья прибыль ниже среднего.
+# Примечание: 4 квартала - это 4 разных прибыли ;-)
 
-pr = cProfile.Profile()
-pr.enable()
+quantity_company = int(input('Введите количество предприятий, которое хотите внести в стат. отчёт: '))
+name_company = []
+profit_companis = []
+full_summ = 0
+average_value_companys = []
 
-#определим пустой список
-chisla_list = []
+# попросим пользователя ввести названия предприятий
+for i in range(quantity_company):
+    name_company.append(input(f'Введите название компании {i + 1}: '))
 
-min_chislo = {}
-max_chislo = {}
+# попросим пользователя ввести прибыль для каждого предприятия поквартально.
+for i in range(quantity_company):
+    profit_company = []
+    for y in range(4):
+        profit_company.append(float(input(f'Введите прибыль {name_company[i]} за {y + 1 } квартал: ')))
 
-#заполним список случайными числами
-for i in range(10):
-    a = random.randint(-100, 100)
-    chisla_list.append(a)
-print(chisla_list)
+    profit_companis.append(profit_company)
 
-#узнаем минисмальное число
-for i, x in enumerate(chisla_list):
-    loc_min_chislo = min_chislo.copy()
-    if any(loc_min_chislo):
-        for k, y in loc_min_chislo.items():
-            if x < y:
-                min_chislo.clear()
-                min_chislo.update({i: x})
-    else:
-        min_chislo.update({i: x})
+# определим среднее значение прибыли всех предприятий
+for i in profit_companis:
+    value = 0
+    for y in i:
+        full_summ += y
+        value += y
+    average_value_companys.append(round(value / 4))
 
-#узнаём максимальное число
-for i, x in enumerate(chisla_list):
-    loc_max_chislo = max_chislo.copy()
-    if any(loc_max_chislo):
-        for k, y in loc_max_chislo.items():
-            if x > y:
-                max_chislo.clear()
-                max_chislo.update({i: x})
-    else:
-        max_chislo.update({i: x})
+# подсчитаем среднее значение и запомним его
+average_value = round((full_summ / (quantity_company * 4)), 2)
 
-print(f'минимальное число: {min_chislo}')
-print(f'максимальное число: {max_chislo}')
-
-#удаляем минимальное значение
-chisla_list.pop(int(list(min_chislo.keys())[0]))
-
-#удаляем максимальное число
-if int(list(max_chislo.keys())[0]) < int(list(min_chislo.keys())[0]):
-    chisla_list.pop(int(list(max_chislo.keys())[0]))
-else:
-    chisla_list.pop(int(list(max_chislo.keys())[0]) - 1)
-
-print(chisla_list)
-
-#print(list(min_chislo.values())[0])
-
-if int(list(max_chislo.keys())[0]) < int(list(min_chislo.keys())[0]):
-    #вставляем минимальное число
-    chisla_list.insert(int(list(max_chislo.keys())[0]), list(min_chislo.values())[0])
-
-    #вставляем максимальное число
-    chisla_list.insert(int(list(min_chislo.keys())[0]), list(max_chislo.values())[0])
-else:
-    #вставляем максимальное число
-    chisla_list.insert(int(list(min_chislo.keys())[0]), list(max_chislo.values())[0])
-
-    #вставляем минимальное число
-    chisla_list.insert(int(list(max_chislo.keys())[0]), list(min_chislo.values())[0])
-
-print(chisla_list)
-
-pr.disable()
-
-strio = io.StringIO()
-ps = pstats.Stats(pr, stream=strio).sort_stats('tottime')
-ps.print_stats()
-
-with open('test.txt', 'w+') as f:
-    f.write(strio.getvalue())
+for i in range(quantity_company):
+    if average_value_companys[i] > average_value:
+        print(f'Компания {name_company[i]} получила среднюю прибыль {average_value_companys[i]} больше среднего значения {average_value}')
+    elif average_value_companys[i] < average_value:
+        print(f'Компания {name_company[i]} получила среднюю прибыль {average_value_companys[i]} меньше среднего значения {average_value}')
