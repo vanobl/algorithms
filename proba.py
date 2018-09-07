@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
-a = 33
-print(f'{33//10}')
-print(f'{33%10}')
+from collections import Counter
+import math
+
+a = Counter({'пенек': [32, 25],'лиса': [12, 45]})
+
+print(int('A', 16))
