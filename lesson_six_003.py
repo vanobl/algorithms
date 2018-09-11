@@ -1,19 +1,23 @@
-#В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
+# В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
 import random
+import sys
 
-#определим пустой список
+# определим пустой список
 chisla_list = []
 
 min_chislo = {}
 max_chislo = {}
 
-#заполним список случайными числами
+# выведем размер переменной
+print(f'Размер на начало: {sys.getsizeof(chisla_list)}')
+
+# заполним список случайными числами
 for i in range(10):
     a = random.randint(-100, 100)
     chisla_list.append(a)
 print(chisla_list)
 
-#узнаем минисмальное число
+# узнаем минисмальное число
 for i, x in enumerate(chisla_list):
     loc_min_chislo = min_chislo.copy()
     if any(loc_min_chislo):
@@ -24,7 +28,7 @@ for i, x in enumerate(chisla_list):
     else:
         min_chislo.update({i: x})
 
-#узнаём максимальное число
+# узнаём максимальное число
 for i, x in enumerate(chisla_list):
     loc_max_chislo = max_chislo.copy()
     if any(loc_max_chislo):
@@ -38,10 +42,10 @@ for i, x in enumerate(chisla_list):
 print(f'минимальное число: {min_chislo}')
 print(f'максимальное число: {max_chislo}')
 
-#удаляем минимальное значение
+# удаляем минимальное значение
 chisla_list.pop(int(list(min_chislo.keys())[0]))
 
-#удаляем максимальное число
+# удаляем максимальное число
 if int(list(max_chislo.keys())[0]) < int(list(min_chislo.keys())[0]):
     chisla_list.pop(int(list(max_chislo.keys())[0]))
 else:
@@ -49,19 +53,22 @@ else:
 
 print(chisla_list)
 
-#print(list(min_chislo.values())[0])
+# print(list(min_chislo.values())[0])
 
 if int(list(max_chislo.keys())[0]) < int(list(min_chislo.keys())[0]):
-    #вставляем минимальное число
+    # вставляем минимальное число
     chisla_list.insert(int(list(max_chislo.keys())[0]), list(min_chislo.values())[0])
 
-    #вставляем максимальное число
+    # вставляем максимальное число
     chisla_list.insert(int(list(min_chislo.keys())[0]), list(max_chislo.values())[0])
 else:
-    #вставляем максимальное число
+    # вставляем максимальное число
     chisla_list.insert(int(list(min_chislo.keys())[0]), list(max_chislo.values())[0])
 
-    #вставляем минимальное число
+    # вставляем минимальное число
     chisla_list.insert(int(list(max_chislo.keys())[0]), list(min_chislo.values())[0])
 
 print(chisla_list)
+
+# выведем размер переменной
+print(f'Размер на конец: {sys.getsizeof(chisla_list)}')
