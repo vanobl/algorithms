@@ -2,6 +2,7 @@
 import random
 import sys
 import os
+import numpy
 
 # определим пустой список
 chisla_list = []
@@ -9,8 +10,16 @@ chisla_list = []
 min_chislo = {}
 max_chislo = {}
 
+# аналитика
+a = sys.getsizeof(chisla_list)
+b = sys.getsizeof(min_chislo)
+c = sys.getsizeof(max_chislo)
+mean_min_chislo = []
+mean_max_chislo = []
 # выведем размер переменной
-print(f'Размер на начало: {sys.getsizeof(chisla_list)}')
+print(f'Размер переменной "chisla_list" до заполнения: {sys.getsizeof(chisla_list)}')
+print(f'Размер переменной "min_chislo" до заполнения: {sys.getsizeof(min_chislo)}')
+print(f'Размер переменной "max_chislo" до заполнения: {sys.getsizeof(max_chislo)}')
 
 # заполним список случайными числами
 for i in range(10):
@@ -26,8 +35,10 @@ for i, x in enumerate(chisla_list):
             if x < y:
                 min_chislo.clear()
                 min_chislo.update({i: x})
+                mean_min_chislo.append(sys.getsizeof(min_chislo))
     else:
         min_chislo.update({i: x})
+        mean_min_chislo.append(sys.getsizeof(min_chislo))
 
 # узнаём максимальное число
 for i, x in enumerate(chisla_list):
@@ -37,8 +48,10 @@ for i, x in enumerate(chisla_list):
             if x > y:
                 max_chislo.clear()
                 max_chislo.update({i: x})
+                mean_max_chislo.append(sys.getsizeof(max_chislo))
     else:
         max_chislo.update({i: x})
+        mean_max_chislo.append(sys.getsizeof(max_chislo))
 
 print(f'минимальное число: {min_chislo}')
 print(f'максимальное число: {max_chislo}')
@@ -72,9 +85,7 @@ else:
 print(chisla_list)
 
 # выведем размер переменной
-print(f'Размер на конец: {sys.getsizeof(chisla_list)}')
-print(sys.winver)
-osname = os.uname_result()
-
-for i in osname:
-    print(i)
+print(f'Размер переменной "chisla_list" после заполнения: {sys.getsizeof(chisla_list)}')
+print(f'Среднее значение использованой памяти для переменной "min_chislo" {numpy.mean(mean_min_chislo)}')
+print(f'Среднее значение использованой памяти для переменной "max_chislo" {numpy.mean(mean_max_chislo)}')
+print(f'Общее среднее значение использованой памяти {numpy.mean(mean_min_chislo) + numpy.mean(mean_max_chislo) + sys.getsizeof(chisla_list)}')
