@@ -1,6 +1,7 @@
 # В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
 import random
 import sys
+import os
 
 # определим пустой список
 chisla_list = []
@@ -72,3 +73,8 @@ print(chisla_list)
 
 # выведем размер переменной
 print(f'Размер на конец: {sys.getsizeof(chisla_list)}')
+print(sys.winver)
+osname = os.uname_result()
+
+for i in osname:
+    print(i)
