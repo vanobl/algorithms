@@ -1,30 +1,28 @@
-#В диапазоне натуральных чисел от 2 до 99 определить, сколько из них 
-# кратны любому из чисел в диапазоне от 2 до 9.
-import sys
+# Отсортировать по убыванию методом «пузырька» одномерный целочисленный массив, 
+# заданный случайными числами на промежутке [-100; 100]. Вывести на экран 
+# исходный и отсортированный массивы.
 
-# определим словарь для кратных чисел
-kratnie = {}
+import random
 
-# переменная для анализа
-a = sys.getsizeof(kratnie)
-# выведем размер пустого списка
-print(f'Размер переменной "kratnie" после создания: {sys.getsizeof(kratnie)}')
+# определим массив для заполнения
+int_list = []
 
-# определим какие из чисел являются кратными
-for i in range(2, 100):
-    for y in range(2, 10):
-        if i % y == 0:
-            kratnie.update({i: y})
+# заполним массив
+for i in range(10):
+    int_list.append(random.randint(-100, 100))
 
-# выведем кратные числа
-for i, y in kratnie.items():
-    print(f'{i} кратно {y}')
+n = 1
 
-# выведем размер заполненого списка
-print(f'Размер переменной "kratnie" после заполнения: {sys.getsizeof(kratnie)}')
+# выведем заполненный массив
+print(f'Массив заполнен: {int_list}')
 
-# изменение памяти
-print(f'Размер занимаемой памяти переменной "kratnie" увеличился на {sys.getsizeof(kratnie) - a}')
+while n < len(int_list):
+    for i in range(len(int_list) - n):
+        if int_list[i] > int_list[i + 1]:
+            int_list[i], int_list[i + 1] = int_list[i + 1], int_list[i]
+        print(int_list)
+    n += 1
 
-# количество ссылок
-print(f'Количество ссылок: {sys.getrefcount(kratnie)}')
+# print(int_list)
+# print(min(int_list))
+# print(max(int_list))
