@@ -4,25 +4,31 @@
 
 import random
 
-# определим массив для заполнения
-int_list = []
+def my_sort(mylist):
 
-# заполним массив
-for i in range(10):
-    int_list.append(random.randint(-100, 100))
+    # определим массив для заполнения
+    int_list = mylist
 
-n = 1
+    # заполним массив
+    for i in range(10):
+        int_list.append(random.randint(-100, 100))
 
-# выведем заполненный массив
-print(f'Массив заполнен: {int_list}')
+    n = 1
 
-while n < len(int_list):
-    for i in range(len(int_list) - n):
-        if int_list[i] > int_list[i + 1]:
-            int_list[i], int_list[i + 1] = int_list[i + 1], int_list[i]
-        print(int_list)
-    n += 1
+    # выведем заполненный массив
+    print(f'Массив заполнен: {int_list}')
 
-# print(int_list)
-# print(min(int_list))
-# print(max(int_list))
+    while n < len(int_list):
+        for i in range(len(int_list) - n):
+            if int_list[i] > int_list[i + 1]:
+                int_list[i], int_list[i + 1] = int_list[i + 1], int_list[i]
+            #print(int_list)
+        n += 1
+    
+    return int_list
+
+my_list = []
+
+my_sort(my_list)
+
+print(f'Массив отсортирован {my_list}')
