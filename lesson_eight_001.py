@@ -1,28 +1,11 @@
-# Отсортировать по убыванию методом «пузырька» одномерный целочисленный массив, 
-# заданный случайными числами на промежутке [-100; 100]. Вывести на экран 
-# исходный и отсортированный массивы.
+# Определение количества различных подстрок с использованием хеш-функции. 
+# Пусть дана строка S длиной N. Например, состоящая только из маленьких 
+# латинских букв. Требуется найти количество различных подстрок в этой 
+# строке. Для решения задачи рекомендую воспользоваться алгоритмом sha1 
+# из модуля hashlib или встроенной в python функцией hash()
+from binarytree import tree, bst
 
-import random
+a = tree(height=4, is_perfect=False)
 
-# определим массив для заполнения
-int_list = []
-
-# заполним массив
-for i in range(10):
-    int_list.append(random.randint(-100, 100))
-
-n = 1
-
-# выведем заполненный массив
-print(f'Массив заполнен: {int_list}')
-
-while n < len(int_list):
-    for i in range(len(int_list) - n):
-        if int_list[i] > int_list[i + 1]:
-            int_list[i], int_list[i + 1] = int_list[i + 1], int_list[i]
-        print(int_list)
-    n += 1
-
-# print(int_list)
-# print(min(int_list))
-# print(max(int_list))
+b = bst(height=4, is_perfect=True)
+print(b)
